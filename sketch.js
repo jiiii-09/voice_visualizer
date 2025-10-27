@@ -10,8 +10,6 @@ function setup() {
 
   mic = new p5.AudioIn();
   mic.start(onMicStart, onMicError); // 마이크 시작 콜백
-
-  // fft는 mic 시작 완료 후 설정
 }
 
 function onMicStart() {
@@ -27,7 +25,8 @@ function onMicError(err) {
 function draw() {
   background('#FAF3E0');
 
-  if (mic.enabled && fft) { // 마이크와 FFT 준비 확인
+  // 마이크와 FFT 준비 확인
+  if (mic.enabled && fft) {
     vol = mic.getLevel();
     smoothVol = lerp(smoothVol, vol, 0.2);
 
